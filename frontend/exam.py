@@ -7,8 +7,9 @@ from solutions.answers import Answers as data
 
 win = Tk()
 win.title("Basic Circuit Quiz")
-win.minsize(width=500, height=370)
-win.maxsize(width=500, height=370)
+win.minsize(width=1200, height=680)
+win.state('zoomed')
+win.configure(background='white')
 win.config(padx=50, pady=50)
 
 def display_exam_one():

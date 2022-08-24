@@ -30,6 +30,7 @@ win = Tk()
 win.title("Basic Circuit Quiz")
 win.minsize(width=500, height=370)
 win.maxsize(width=500, height=370)
+win.configure(background='white')
 win.config(padx=50, pady=50)
 
 
