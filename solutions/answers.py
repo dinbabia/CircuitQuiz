@@ -7,7 +7,7 @@ class Answers:
         
         data = {}
         given = rand.generate_problem_one()
-        data["given"] = given
+        
         
         # ANSWERS
         res_total = Circuit.solve_series_resistance(
@@ -68,6 +68,7 @@ class Answers:
         print(given["res_one"])
         print(given["res_two"])
         print(given["res_three"])
+        return given
         
         
         
