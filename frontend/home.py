@@ -44,7 +44,7 @@ welcome_note = Label(text="Fill up the form before starting the quiz.", font=("T
 welcome_note.grid(column=2, row=4, columnspan = 2, pady=(0, 30))
 
 # DATE
-date = Label(text=f"Date: {datetime.now().strftime('%B %d,%Y')}", font=("Courier", 12, "bold"), background="white")
+date = Label(text=f"Date: {datetime.now().strftime('%B %d, %Y')}", font=("Courier", 12, "bold"), background="white")
 date.grid(column=2, row=5,  columnspan = 2,pady=(0, 20))
 
 # USER NAME
