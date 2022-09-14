@@ -7,6 +7,7 @@ from solutions.answers import Answers as data
 from functools import partial
 
 TIME_LIMIT = 5 # Time in Decimal Format
+SCORE = 0
 timer = None
 
 win = Tk()
@@ -46,6 +47,7 @@ def display_exam_one():
     # DISPLAY TIME
     display_timer(TIME_LIMIT * 60)
     timer_label.grid(column=4, row=0, sticky="e")
+    score_label.grid(column=0, row=0, sticky="w")
 
     # DISPLAY IMAGE FOR CIRCUIT 1
     canvas.grid(column=0, row=1, columnspan = 4, sticky="n")
@@ -78,25 +80,42 @@ def display_exam_one():
     exam_one_question_three_ii.grid(column=0, row=7, sticky="e", padx=10)
     exam_one_question_three_iii.grid(column=0, row=8, sticky="e", padx=10)
 
-    exam_one_check_three_btn_i.config(command=lambda: check_answer(exam_one_answer_three_i, correct_ans=answers['current_total'], btn=exam_one_check_three_btn_i))
+    exam_one_check_three_btn_i.config(command=lambda: check_answer(exam_one_answer_three_i, correct_ans=answers['current_one'], btn=exam_one_check_three_btn_i))
     exam_one_check_three_btn_i.grid(column=2, row=6, sticky="w", padx=0)
-    exam_one_check_three_btn_ii.config(command=lambda: check_answer(exam_one_answer_three_ii, correct_ans=answers['current_total'], btn=exam_one_check_three_btn_ii))
+    exam_one_check_three_btn_ii.config(command=lambda: check_answer(exam_one_answer_three_ii, correct_ans=answers['current_two'], btn=exam_one_check_three_btn_ii))
     exam_one_check_three_btn_ii.grid(column=2, row=7, sticky="w", padx=0)
-    exam_one_check_three_btn_iii.config(command=lambda: check_answer(exam_one_answer_three_iii, correct_ans=answers['current_total'], btn=exam_one_check_three_btn_iii))
+    exam_one_check_three_btn_iii.config(command=lambda: check_answer(exam_one_answer_three_iii, correct_ans=answers['current_three'], btn=exam_one_check_three_btn_iii))
     exam_one_check_three_btn_iii.grid(column=2, row=8, sticky="w", padx=0)
 
     # QUESTION 4
-    # exam_one_question_four.grid(column=0, row=6, sticky="w")
+    exam_one_question_four.grid(column=0, row=9, sticky="w")
+    exam_one_answer_four_i.grid(column=1, row=10, sticky="w", padx=0)
+    exam_one_answer_four_ii.grid(column=1, row=11, sticky="w", padx=0)
+    exam_one_answer_four_iii.grid(column=1, row=12, sticky="w", padx=0)
 
-    
+    exam_one_question_four_i.grid(column=0, row=10, sticky="e", padx=10)
+    exam_one_question_four_ii.grid(column=0, row=11, sticky="e", padx=10)
+    exam_one_question_four_iii.grid(column=0, row=12, sticky="e", padx=10)
+
+    exam_one_check_four_btn_i.config(command=lambda: check_answer(exam_one_answer_four_i, correct_ans=answers['voltage_one'], btn=exam_one_check_four_btn_i))
+    exam_one_check_four_btn_i.grid(column=2, row=10, sticky="w", padx=0)
+    exam_one_check_four_btn_ii.config(command=lambda: check_answer(exam_one_answer_four_ii, correct_ans=answers['voltage_two'], btn=exam_one_check_four_btn_ii))
+    exam_one_check_four_btn_ii.grid(column=2, row=11, sticky="w", padx=0)
+    exam_one_check_four_btn_iii.config(command=lambda: check_answer(exam_one_answer_four_iii, correct_ans=answers['voltage_three'], btn=exam_one_check_four_btn_iii))
+    exam_one_check_four_btn_iii.grid(column=2, row=12, sticky="w", padx=0)
+
+
     # exam_one_question_five.grid(column=0, row=7, sticky="w")
     
 
 def check_answer(input, correct_ans,btn):
     test = input.get()
     if test == str(correct_ans):
+        global SCORE
         btn.config(text="Correct", style="G.TButton",state="disabled")
         input.config(state="disabled")
+        SCORE += 1
+        score_label.config(text=f"SCORE: {SCORE}")
     else:
         btn.config(text="Wrong", style="R.TButton",state="disabled")
         input.config(state="disabled")
@@ -108,6 +127,12 @@ def check_answer(input, correct_ans,btn):
 st = Style()
 st.configure('G.TButton',  background="green", font=('Arial', 8 ,'bold', 'underline'))
 st.configure('R.TButton',  background="red", font=('Arial', 8 ,'bold', 'underline'))
+
+# SCORE LABEL
+score_label = Label(text=f"SCORE: {SCORE}", 
+    font=("Courier", 14, "bold"), 
+    background="white",
+    wraplength=500)
 
 # TIMER LABEL
 timer_label = Label(text="00:00", 
@@ -130,7 +155,10 @@ exam_one_question_three = QuestionLabel(text="c.) the current through each resis
 exam_one_question_three_i = QuestionLabel(text="i.) Current 1 (A):")
 exam_one_question_three_ii = QuestionLabel(text="ii.) Current 2 (A):")
 exam_one_question_three_iii = QuestionLabel(text="iii.) Current 3 (A):")
-exam_one_question_four = QuestionLabel(text="d.) the voltage drop across each resistor(V):")
+exam_one_question_four = QuestionLabel(text="d.) the voltage drop across each resistor(V)")
+exam_one_question_four_i = QuestionLabel(text="i.) Voltage 1 (V):")
+exam_one_question_four_ii = QuestionLabel(text="ii.) Voltage 2 (V):")
+exam_one_question_four_iii = QuestionLabel(text="iii.) Voltage 3 (V):")
 exam_one_question_five = QuestionLabel(text="e.) the power dissipated in each resistor(W)")
 
 # CIRCUIT 1 QUESTION INPUTS
@@ -140,6 +168,9 @@ exam_one_answer_two = Entry(width=10)
 exam_one_answer_three_i = Entry(width=10)
 exam_one_answer_three_ii = Entry(width=10)
 exam_one_answer_three_iii = Entry(width=10)
+exam_one_answer_four_i = Entry(width=10)
+exam_one_answer_four_ii = Entry(width=10)
+exam_one_answer_four_iii = Entry(width=10)
 
 
 
@@ -150,6 +181,9 @@ exam_one_check_two_btn = Button(win, text="Check")
 exam_one_check_three_btn_i = Button(win, text="Check")
 exam_one_check_three_btn_ii = Button(win, text="Check")
 exam_one_check_three_btn_iii = Button(win, text="Check")
+exam_one_check_four_btn_i = Button(win, text="Check")
+exam_one_check_four_btn_ii = Button(win, text="Check")
+exam_one_check_four_btn_iii = Button(win, text="Check")
 
 
 # START EXAM BUTTON

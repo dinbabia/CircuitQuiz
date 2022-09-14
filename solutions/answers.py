@@ -18,27 +18,31 @@ class Answers:
             resistance = answer_key['res_total'])
         
         # Current is constant through resistors in series.
-        curr_one = answer_key['current_total']
-        curr_two = answer_key['current_total']
-        curr_three = answer_key['current_total']
+        answer_key['current_one'] = answer_key['current_total']
+        answer_key['current_two'] = answer_key['current_total']
+        answer_key['current_three'] = answer_key['current_total']
         
-        volt_one = Circuit.solve_voltage(
-            current = curr_one,
+        answer_key['voltage_one'] = Circuit.solve_voltage(
+            current = answer_key['current_one'],
             resistance = given["res_one"])
         
-        volt_two = Circuit.solve_voltage(
-            current = curr_two,
+        answer_key['voltage_two'] = Circuit.solve_voltage(
+            current = answer_key['current_two'],
             resistance = given["res_two"])
         
-        volt_three = Circuit.solve_voltage(
-            current = curr_three,
+        answer_key['voltage_three'] = Circuit.solve_voltage(
+            current = answer_key['current_three'],
             resistance = given["res_three"])
         
-        volt_total = Circuit.sum_in_float(volt_one, volt_two, volt_three)
+        volt_total = Circuit.sum_in_float(
+            answer_key['voltage_one'], answer_key['voltage_two'], answer_key['voltage_three'])
         
-        pow_one = Circuit.solve_power(voltage = volt_one, current = curr_one)
-        pow_two = Circuit.solve_power(voltage = volt_two, current = curr_one)
-        pow_three = Circuit.solve_power(voltage = volt_three, current = curr_one)
+        pow_one = Circuit.solve_power(
+            voltage = answer_key['voltage_one'], current = answer_key['current_one'])
+        pow_two = Circuit.solve_power(
+            voltage = answer_key['voltage_two'], current = answer_key['current_two'])
+        pow_three = Circuit.solve_power(
+            voltage = answer_key['voltage_three'], current = answer_key['current_three'])
         
         pow_total = Circuit.sum_in_float(pow_one, pow_two, pow_three)
         
@@ -54,14 +58,14 @@ class Answers:
         print(pow_total)
         
         print("Current:")
-        print(curr_one)
-        print(curr_two)
-        print(curr_three)
+        print(answer_key['current_one'])
+        print(answer_key['current_two'])
+        print(answer_key['current_three'])
         
         print("Voltage:")
-        print(volt_one)
-        print(volt_two)
-        print(volt_three)
+        print(answer_key['voltage_one'])
+        print(answer_key['voltage_one'])
+        print(answer_key['voltage_one'])
         print(volt_total)
         
         print("Given:")
