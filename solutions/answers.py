@@ -5,21 +5,22 @@ class Answers:
     
     def answers_for_problem_one():
         
-        data = {}
+        answer_key = {}
         given = rand.generate_problem_one()
+        answer_key["given"] = given
         
         
         # ANSWERS
-        res_total = Circuit.solve_series_resistance(
+        answer_key['res_total'] = Circuit.solve_series_resistance(
             given_res = [given["res_one"], given["res_two"], given["res_three"]])
-        current_total = Circuit.solve_current(
+        answer_key['current_total'] = Circuit.solve_current(
             voltage = given["voltage"], 
-            resistance = res_total)
+            resistance = answer_key['res_total'])
         
         # Current is constant through resistors in series.
-        curr_one = current_total
-        curr_two = current_total
-        curr_three = current_total
+        curr_one = answer_key['current_total']
+        curr_two = answer_key['current_total']
+        curr_three = answer_key['current_total']
         
         volt_one = Circuit.solve_voltage(
             current = curr_one,
@@ -42,9 +43,9 @@ class Answers:
         pow_total = Circuit.sum_in_float(pow_one, pow_two, pow_three)
         
         print("Total Res:")
-        print(res_total)
+        print(answer_key['res_total'])
         print("Total Current:")
-        print(current_total)
+        print(answer_key['current_total'])
         
         print("Power:")
         print(pow_one)
@@ -68,7 +69,7 @@ class Answers:
         print(given["res_one"])
         print(given["res_two"])
         print(given["res_three"])
-        return given
+        return answer_key
         
         
         
