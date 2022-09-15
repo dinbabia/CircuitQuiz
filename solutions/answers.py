@@ -37,14 +37,14 @@ class Answers:
         volt_total = Circuit.sum_in_float(
             answer_key['voltage_one'], answer_key['voltage_two'], answer_key['voltage_three'])
         
-        pow_one = Circuit.solve_power(
+        answer_key['power_one'] = Circuit.solve_power(
             voltage = answer_key['voltage_one'], current = answer_key['current_one'])
-        pow_two = Circuit.solve_power(
+        answer_key['power_two'] = Circuit.solve_power(
             voltage = answer_key['voltage_two'], current = answer_key['current_two'])
-        pow_three = Circuit.solve_power(
+        answer_key['power_three'] = Circuit.solve_power(
             voltage = answer_key['voltage_three'], current = answer_key['current_three'])
         
-        pow_total = Circuit.sum_in_float(pow_one, pow_two, pow_three)
+        pow_total = Circuit.sum_in_float(answer_key['power_one'], answer_key['power_two'], answer_key['power_three'])
         
         print("Total Res:")
         print(answer_key['res_total'])
@@ -52,9 +52,9 @@ class Answers:
         print(answer_key['current_total'])
         
         print("Power:")
-        print(pow_one)
-        print(pow_two)
-        print(pow_three)
+        print(answer_key['power_one'])
+        print(answer_key['power_two'])
+        print(answer_key['power_three'])
         print(pow_total)
         
         print("Current:")

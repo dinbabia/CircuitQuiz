@@ -15,7 +15,9 @@ win.title("Basic Circuit Quiz")
 win.minsize(width=1200, height=680)
 win.state('zoomed')
 win.configure(bg='white')
-win.config(padx=50, pady=50)
+win.config(padx=25, pady=25)
+
+
 
 class QuestionLabel(Label):
     '''
@@ -28,9 +30,6 @@ class QuestionLabel(Label):
             wraplength=500)
 
 
-       
-      
-    
 
 def display_timer(count):
     minute = int(count/60)
@@ -44,6 +43,7 @@ def display_timer(count):
 
 def display_exam_one():
     start_button.destroy()
+
     # DISPLAY TIME
     display_timer(TIME_LIMIT * 60)
     timer_label.grid(column=4, row=0, sticky="e")
@@ -104,8 +104,22 @@ def display_exam_one():
     exam_one_check_four_btn_iii.config(command=lambda: check_answer(exam_one_answer_four_iii, correct_ans=answers['voltage_three'], btn=exam_one_check_four_btn_iii))
     exam_one_check_four_btn_iii.grid(column=2, row=12, sticky="w", padx=0)
 
+    # QUESTION 5
+    exam_one_question_five.grid(column=5, row=3, columnspan = 8,sticky="w")
+    exam_one_answer_five_i.grid(column=6, row=4, sticky="w",padx=0)
+    exam_one_answer_five_ii.grid(column=6, row=5,  sticky="w",padx=0)
+    exam_one_answer_five_iii.grid(column=6, row=6,  sticky="w",padx=0)
 
-    # exam_one_question_five.grid(column=0, row=7, sticky="w")
+    exam_one_question_five_i.grid(column=5, row=4, sticky="e",padx=10)
+    exam_one_question_five_ii.grid(column=5, row=5,  sticky="e",padx=10)
+    exam_one_question_five_iii.grid(column=5, row=6, sticky="e", padx=10)
+
+    exam_one_check_five_btn_i.config(command=lambda: check_answer(exam_one_answer_five_i, correct_ans=answers['power_one'], btn=exam_one_check_five_btn_i))
+    exam_one_check_five_btn_i.grid(column=7, row=4, sticky="w", padx=10)
+    exam_one_check_five_btn_ii.config(command=lambda: check_answer(exam_one_answer_five_ii, correct_ans=answers['power_two'], btn=exam_one_check_five_btn_ii))
+    exam_one_check_five_btn_ii.grid(column=7, row=5, sticky="w", padx=10)
+    exam_one_check_five_btn_iii.config(command=lambda: check_answer(exam_one_answer_five_iii, correct_ans=answers['power_three'], btn=exam_one_check_five_btn_iii))
+    exam_one_check_five_btn_iii.grid(column=7, row=6, sticky="w", padx=10)
     
 
 def check_answer(input, correct_ans,btn):
@@ -160,6 +174,9 @@ exam_one_question_four_i = QuestionLabel(text="i.) Voltage 1 (V):")
 exam_one_question_four_ii = QuestionLabel(text="ii.) Voltage 2 (V):")
 exam_one_question_four_iii = QuestionLabel(text="iii.) Voltage 3 (V):")
 exam_one_question_five = QuestionLabel(text="e.) the power dissipated in each resistor(W)")
+exam_one_question_five_i = QuestionLabel(text="i.) Power 1 (W):")
+exam_one_question_five_ii = QuestionLabel(text="ii.) Power 2 (W):")
+exam_one_question_five_iii = QuestionLabel(text="iii.) Power 3 (W):")
 
 # CIRCUIT 1 QUESTION INPUTS
 
@@ -171,6 +188,9 @@ exam_one_answer_three_iii = Entry(width=10)
 exam_one_answer_four_i = Entry(width=10)
 exam_one_answer_four_ii = Entry(width=10)
 exam_one_answer_four_iii = Entry(width=10)
+exam_one_answer_five_i = Entry(width=10)
+exam_one_answer_five_ii = Entry(width=10)
+exam_one_answer_five_iii = Entry(width=10)
 
 
 
@@ -184,6 +204,9 @@ exam_one_check_three_btn_iii = Button(win, text="Check")
 exam_one_check_four_btn_i = Button(win, text="Check")
 exam_one_check_four_btn_ii = Button(win, text="Check")
 exam_one_check_four_btn_iii = Button(win, text="Check")
+exam_one_check_five_btn_i = Button(win, text="Check")
+exam_one_check_five_btn_ii = Button(win, text="Check")
+exam_one_check_five_btn_iii = Button(win, text="Check")
 
 
 # START EXAM BUTTON
